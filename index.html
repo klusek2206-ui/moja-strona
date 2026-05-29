@@ -1,68 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-  <title>Dark Fashion</title>
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: Arial;
-      text-align: center;
-    }
-    img {
-      width: 300px;
-      margin: 10px;
-    }
-    #map {
-      height: 400px;
-      margin-top: 20px;
-    }
-  </style>
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 521 - Web server is down</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            color: #313131;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        .header {
+            border-bottom: 1px solid #d9d9d9;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .error-code {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #bd2c00;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: 300;
+            margin: 5px 0;
+        }
+        /* Schemat połączenia */
+        .diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            padding: 30px 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .node {
+            text-align: center;
+            flex: 1;
+            z-index: 2;
+        }
+        .node-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .node-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .status {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .status.working {
+            background-color: #e6f4ea;
+            color: #137333;
+        }
+        .status.failed {
+            background-color: #fce8e6;
+            color: #c5221f;
+        }
+        /* Linie łączące */
+        .line {
+            height: 4px;
+            flex-grow: 2;
+            margin: 0 -10px;
+            position: relative;
+            top: -15px;
+            z-index: 1;
+        }
+        .line.success {
+            background-color: #34a853;
+        }
+        .line.error {
+            background-color: #ea4335;
+            background-image: linear-gradient(45deg, #ea4335 25%, transparent 25%, transparent 50%, #ea4335 50%, #ea4335 75%, transparent 75%, transparent);
+            background-size: 15px 15px;
+        }
+        /* Opisy pod spodem */
+        .details h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 30px;
+        }
+        .details p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #595959;
+        }
+        .cf-footer {
+            border-top: 1px solid #d9d9d9;
+            padding-top: 20px;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #8c8c8c;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>Dark Streetwear</h1>
-<p>Inspired by Vetements style</p>
+<div class="container">
+    <div class="header">
+        <div class="error-code">Error 521</div>
+        <h1>Web server is down</h1>
+    </div>
 
-<img src="https://images.garmentory.com/images/10494437/xl/VETEMENTS-Black-oversize-hoodie-20240110143830.jpg?1704897514">
-<img src="https://photo.yupoo.com/vetementsshop/cae6e64e/5bb003e0.jpg">
+    <div class="diagram">
+        <div class="node">
+            <div class="node-icon">💻</div>
+            <div class="node-title">You</div>
+            <div class="status working">Browser Working</div>
+        </div>
+        
+        <div class="line success"></div>
+        
+        <div class="node">
+            <div class="node-icon">☁️</div>
+            <div class="node-title">Warsaw</div>
+            <div class="status working">Cloudflare Working</div>
+        </div>
+        
+        <div class="line error"></div>
+        
+        <div class="node">
+            <div class="node-icon">❌</div>
+            <div class="node-title">moja-strona.pl</div>
+            <div class="status failed">Host Error</div>
+        </div>
+    </div>
 
-<h2>Visitors Map 🌍</h2>
-<div id="map"></div>
+    <div class="details">
+        <h2>What happened?</h2>
+        <p>The web server is not returning a response and the connection was refused. As a result, the web page cannot be displayed.</p>
+        
+        <h2>What can I do?</h2>
+        <p><strong>If you are a visitor of this website:</strong> Please try again in a few minutes.</p>
+        <p><strong>If you are the owner of this website:</strong> Check if your origin server is running and accepting connections on the configured port. Cloudflare is trying to connect, but the server is actively refusing it.</p>
+    </div>
 
-<p id="visits"></p>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-<script>
-  const map = L.map('map').setView([20, 0], 2);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap'
-  }).addTo(map);
-
-  fetch("https://ipapi.co/json/")
-    .then(res => res.json())
-    .then(data => {
-      const lat = data.latitude;
-      const lon = data.longitude;
-
-      L.marker([lat, lon])
-        .addTo(map)
-        .bindPopup("You are here")
-        .openPopup();
-    });
-
-  fetch("https://api.countapi.xyz/hit/mojastrona/visits")
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("visits").innerText =
-        "Visits: " + data.value;
-    });
-</script>
+    <div class="cf-footer">
+        Cloudflare Ray ID: <span style="font-family: monospace;">9c1234567890abcdef</span> &bull; Your IP: 127.0.0.1 &bull; Performance & security by Cloudflare
+    </div>
+</div>
 
 </body>
 </html>
