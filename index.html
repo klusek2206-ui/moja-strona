@@ -1,112 +1,246 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-US"> <head>
-<title>Web server is down | http://www.sp.bychawa.pl | Cloudflare</title>
-<meta charset="UTF-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<meta name="robots" content="noindex, nofollow" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<style>
-    body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";color:#404040;background-color:#fff;font-size:16px;line-height:1.5;antialiased:true}
-    .cf-error-details-wrapper{padding:45px 15px 30px}
-    .cf-wrapper{margin-left:auto;margin-right:auto;width:100%;max-width:940px}
-    .cf-columns{display:flex;flex-wrap:wrap;justify-content:space-between}
-    .cf-column{flex:1;min-width:300px;padding:0 15px;box-sizing:border-box}
-    .cf-error-title{margin:0 0 10px;font-size:36px;line-height:1.2;font-weight:300;color:#2f3133}
-    .cf-error-code{font-size:15px;font-weight:700;text-transform:uppercase;color:#bd2c00;margin-bottom:25px}
-    .cf-error-code span{color:#404040;font-weight:400;text-transform:none}
-    
-    /* Diagram statyczny Cloudflare */
-    .cf-status-display{background-color:#f3f3f3;border:1px solid #e5e5e5;border-radius:4px;padding:35px 20px;margin-bottom:35px}
-    .cf-status-section{display:flex;align-items:center;justify-content:space-between;position:relative}
-    .cf-status-item{text-align:center;flex:1;z-index:2;position:relative}
-    .cf-status-item.cf-error-item .cf-icon-error{display:block}
-    .cf-status-item.cf-error-item .cf-status-label{color:#bd2c00;font-weight:700}
-    .cf-status-label{display:block;font-size:15px;font-weight:700;margin:10px 0 3px;color:#4f4f4f}
-    .cf-status-sublabel{display:block;font-size:13px;color:#7e7e7e}
-    
-    /* Ikony i Linie */
-    .cf-icon{display:inline-block;width:48px;height:48px;fill:#999}
-    .cf-icon-success{fill:#2f9e44}
-    .cf-icon-error{fill:#e03131}
-    .cf-status-item .status-badge{display:inline-block;padding:2px 8px;font-size:12px;font-weight:700;border-radius:12px;color:#fff}
-    .cf-status-item .status-badge.ok{background-color:#2f9e44}
-    .cf-status-item .status-badge.error{background-color:#e03131}
-    
-    .cf-status-line{height:4px;flex:1;background-color:#2f9e44;margin:0 -20px;position:relative;top:-18px;z-index:1}
-    .cf-status-line.cf-status-line-error{background:#e03131;background:linear-gradient(90deg,#2f9e44 0%,#2f9e44 45%,#e03131 55%,#e03131 100%)}
-    
-    /* Teksty dolne */
-    h2{font-size:22px;font-weight:400;color:#2f3133;margin-top:25px;margin-bottom:15px}
-    p{margin:0 0 15px;color:#404040}
-    p strong{font-weight:700}
-    
-    /* Stopka */
-    .cf-error-footer{margin-top:60px;border-top:1px solid #e5e5e5;padding:20px 0 15px;font-size:12px;color:#7e7e7e;text-align:center}
-    .cf-footer-item{display:inline-block;margin:0 10px}
-    .cf-footer-separator{color:#c5c5c5}
-</style>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web server is down | http://www.sp.bychawa.pl/</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 40px auto 30px auto;
+            padding: 0 20px;
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 300;
+            margin: 0;
+            color: #333333;
+        }
+
+        .error-badge {
+            background-color: #e0e0e0;
+            color: #555555;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .meta-info {
+            font-size: 16px;
+            color: #666666;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .meta-info a {
+            color: #0051c3;
+            text-decoration: none;
+        }
+
+        .meta-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Główny szary panel z diagramem */
+        .diagram-section {
+            background-color: #eaeaea;
+            padding: 60px 20px 40px 20px;
+            border-bottom: 1px solid #dcdcdc;
+            position: relative;
+        }
+
+        .diagram-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .node {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        /* Kontenery na ikony Cloudflare */
+        .icon-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 90px;
+            margin-bottom: 15px;
+        }
+
+        .main-icon {
+            width: 100%;
+            height: 100%;
+            fill: #9a9a9a;
+        }
+
+        /* Małe statusy (kółka z ptaszkiem/krzyżykiem) nałożone na ikony */
+        .status-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-55%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #eaeaea;
+        }
+
+        .status-badge.success {
+            background-color: #74c027;
+        }
+
+        .status-badge.danger {
+            background-color: #b92525;
+        }
+
+        .status-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        /* Teksty w diagramie */
+        .node-name {
+            font-size: 15px;
+            color: #666666;
+            margin-bottom: 8px;
+        }
+
+        .node-type {
+            font-size: 22px;
+            color: #999999;
+            margin-bottom: 4px;
+        }
+
+        .node-status {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .node-status.working {
+            color: #74c027;
+        }
+
+        .node-status.error {
+            color: #b92525;
+        }
+
+        .node-type.cf-active {
+            color: #0051c3;
+        }
+
+        /* Mały biały dzióbek na samym dole szarej sekcji */
+        .arrow-down {
+            position: absolute;
+            bottom: 0;
+            left: 83.5%; /* Wskazuje na serwer */
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 12px solid #ffffff;
+        }
+    </style>
 </head>
 <body>
-<div id="cf-wrapper">
-    <div class="cf-error-details-wrapper">
-        <div class="cf-wrapper">
-            <div class="cf-error-code">Error 521 <span>• Ray ID: 9f7b43a2bc81234f •</span> 2026-05-29 19:53:24 UTC</div>
-            <h1 class="cf-error-title">Web server is down</h1>
+
+    <!-- GÓRNY NAGŁÓWEK -->
+    <div class="header-container">
+        <div class="title-row">
+            <h1>Web server is down</h1>
+            <div class="error-badge">Error code 521</div>
+        </div>
+        <div class="meta-info">
+            Visit <a href="https://cloudflare.com">cloudflare.com</a> for more information.<br>
+            2026-05-29 19:57:12 UTC
+        </div>
+    </div>
+
+    <!-- SEKCJA Z DIAGRAMEM (SZARE TŁO) -->
+    <div class="diagram-section">
+        <div class="diagram-container">
             
-            <div class="cf-status-display">
-                <div class="cf-status-section">
-                    
-                    <div class="cf-status-item">
-                        <svg class="cf-icon cf-icon-success" viewBox="0 0 24 24"><path d="M4 6h16v10H4zm0 12h16v2H4zm2-5h2v2H6zm4 0h8v2h-8z"/></svg>
-                        <span class="cf-status-label">You</span>
-                        <span class="status-badge ok">Browser</span>
-                        <span class="cf-status-sublabel">Working</span>
+            <!-- Przeglądarka (You) -->
+            <div class="node">
+                <div class="icon-wrapper">
+                    <!-- Ikona przeglądarki/okna -->
+                    <svg class="main-icon" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 4h16V6H4v2z"/>
+                    </svg>
+                    <div class="status-badge success">
+                        <!-- Ptaszek -->
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                     </div>
-                    
-                    <div class="cf-status-line"></div>
-                    
-                    <div class="cf-status-item">
-                        <svg class="cf-icon cf-icon-success" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-                        <span class="cf-status-label">Warsaw</span>
-                        <span class="status-badge ok">Cloudflare</span>
-                        <span class="cf-status-sublabel">Working</span>
-                    </div>
-                    
-                    <div class="cf-status-line cf-status-line-error"></div>
-                    
-                    <div class="cf-status-item cf-error-item">
-                        <svg class="cf-icon cf-icon-error" viewBox="0 0 24 24"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H6V6h12v12zm-2-8h-2V8h2v2zm-4 0H8V8h2v2zm4 4h-2v-2h2v2zm-4 0H8v-2h2v2z"/></svg>
-                        <span class="cf-status-label">http://www.sp.bychawa.pl</span>
-                        <span class="status-badge error">Host</span>
-                        <span class="cf-status-sublabel">Error</span>
-                    </div>
-                    
                 </div>
+                <div class="node-name">You</div>
+                <div class="node-type">Browser</div>
+                <div class="node-status working">Working</div>
             </div>
 
-            <div class="cf-columns">
-                <div class="cf-column">
-                    <h2>What happened?</h2>
-                    <p>The web server is not returning a response and the connection was refused. As a result, the web page cannot be displayed.</p>
+            <!-- Serwer Cloudflare (San Jose / Warszawa) -->
+            <div class="node">
+                <div class="icon-wrapper">
+                    <!-- Ikona chmury -->
+                    <svg class="main-icon" viewBox="0 0 24 24">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+                    </svg>
+                    <div class="status-badge success">
+                        <!-- Ptaszek -->
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.41 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
                 </div>
-                <div class="cf-column">
-                    <h2>What can I do?</h2>
-                    <p><strong>If you are a visitor of this website:</strong><br>Please try again in a few minutes.</p>
-                    <p><strong>If you are the owner of this website:</strong><br>Check if your origin server is running and accepting connections on the configured port. Cloudflare is trying to connect, but the server is actively refusing it.</p>
-                </div>
+                <div class="node-name">Warsaw</div>
+                <div class="node-type cf-active">Cloudflare</div>
+                <div class="node-status working">Working</div>
             </div>
 
-            <div class="cf-error-footer">
-                <span class="cf-footer-item">Cloudflare Ray ID: <strong>9f7b43a2bc81234f</strong></span>
-                <span class="cf-footer-separator">•</span>
-                <span class="cf-footer-item">Your IP: 185.137.12.44</span>
-                <span class="cf-footer-separator">•</span>
-                <span class="cf-footer-item">Performance &amp; security by Cloudflare</span>
+            <!-- Serwer docelowy (Błąd) -->
+            <div class="node">
+                <div class="icon-wrapper">
+                    <!-- Ikona serwera fizycznego -->
+                    <svg class="main-icon" viewBox="0 0 24 24">
+                        <path d="M19 13H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm-3 5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm3 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm0-7H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm-3 5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm3 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" transform="translate(0, -4)"/>
+                    </svg>
+                    <div class="status-badge danger">
+                        <!-- Krzyżyk X -->
+                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </div>
+                </div>
+                <div class="node-name">http://www.sp.bychawa.pl/</div>
+                <div class="node-type">Host</div>
+                <div class="node-status error">Error</div>
             </div>
 
         </div>
+        <!-- Biały trójkącik na dole sekcji -->
+        <div class="arrow-down"></div>
     </div>
-</div>
+
 </body>
 </html>
