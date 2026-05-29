@@ -1,163 +1,112 @@
 <!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error 521 - Web server is down</title>
-    <style>
-        body {
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            color: #313131;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .container {
-            max-width: 800px;
-            width: 100%;
-        }
-        .header {
-            border-bottom: 1px solid #d9d9d9;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        .error-code {
-            font-size: 14px;
-            text-transform: uppercase;
-            color: #bd2c00;
-            font-weight: bold;
-        }
-        h1 {
-            font-size: 36px;
-            font-weight: 300;
-            margin: 5px 0;
-        }
-        /* Schemat połączenia */
-        .diagram {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f9f9f9;
-            border: 1px solid #e5e5e5;
-            border-radius: 4px;
-            padding: 30px 20px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .node {
-            text-align: center;
-            flex: 1;
-            z-index: 2;
-        }
-        .node-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        .node-title {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        .status {
-            font-size: 12px;
-            padding: 3px 8px;
-            border-radius: 12px;
-            display: inline-block;
-            font-weight: bold;
-        }
-        .status.working {
-            background-color: #e6f4ea;
-            color: #137333;
-        }
-        .status.failed {
-            background-color: #fce8e6;
-            color: #c5221f;
-        }
-        /* Linie łączące */
-        .line {
-            height: 4px;
-            flex-grow: 2;
-            margin: 0 -10px;
-            position: relative;
-            top: -15px;
-            z-index: 1;
-        }
-        .line.success {
-            background-color: #34a853;
-        }
-        .line.error {
-            background-color: #ea4335;
-            background-image: linear-gradient(45deg, #ea4335 25%, transparent 25%, transparent 50%, #ea4335 50%, #ea4335 75%, transparent 75%, transparent);
-            background-size: 15px 15px;
-        }
-        /* Opisy pod spodem */
-        .details h2 {
-            font-size: 22px;
-            font-weight: 400;
-            margin-top: 30px;
-        }
-        .details p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #595959;
-        }
-        .cf-footer {
-            border-top: 1px solid #d9d9d9;
-            padding-top: 20px;
-            margin-top: 40px;
-            font-size: 13px;
-            color: #8c8c8c;
-            text-align: center;
-        }
-    </style>
+<html class="no-js" lang="en-US"> <head>
+<title>Web server is down | http://www.sp.bychawa.pl | Cloudflare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+    body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";color:#404040;background-color:#fff;font-size:16px;line-height:1.5;antialiased:true}
+    .cf-error-details-wrapper{padding:45px 15px 30px}
+    .cf-wrapper{margin-left:auto;margin-right:auto;width:100%;max-width:940px}
+    .cf-columns{display:flex;flex-wrap:wrap;justify-content:space-between}
+    .cf-column{flex:1;min-width:300px;padding:0 15px;box-sizing:border-box}
+    .cf-error-title{margin:0 0 10px;font-size:36px;line-height:1.2;font-weight:300;color:#2f3133}
+    .cf-error-code{font-size:15px;font-weight:700;text-transform:uppercase;color:#bd2c00;margin-bottom:25px}
+    .cf-error-code span{color:#404040;font-weight:400;text-transform:none}
+    
+    /* Diagram statyczny Cloudflare */
+    .cf-status-display{background-color:#f3f3f3;border:1px solid #e5e5e5;border-radius:4px;padding:35px 20px;margin-bottom:35px}
+    .cf-status-section{display:flex;align-items:center;justify-content:space-between;position:relative}
+    .cf-status-item{text-align:center;flex:1;z-index:2;position:relative}
+    .cf-status-item.cf-error-item .cf-icon-error{display:block}
+    .cf-status-item.cf-error-item .cf-status-label{color:#bd2c00;font-weight:700}
+    .cf-status-label{display:block;font-size:15px;font-weight:700;margin:10px 0 3px;color:#4f4f4f}
+    .cf-status-sublabel{display:block;font-size:13px;color:#7e7e7e}
+    
+    /* Ikony i Linie */
+    .cf-icon{display:inline-block;width:48px;height:48px;fill:#999}
+    .cf-icon-success{fill:#2f9e44}
+    .cf-icon-error{fill:#e03131}
+    .cf-status-item .status-badge{display:inline-block;padding:2px 8px;font-size:12px;font-weight:700;border-radius:12px;color:#fff}
+    .cf-status-item .status-badge.ok{background-color:#2f9e44}
+    .cf-status-item .status-badge.error{background-color:#e03131}
+    
+    .cf-status-line{height:4px;flex:1;background-color:#2f9e44;margin:0 -20px;position:relative;top:-18px;z-index:1}
+    .cf-status-line.cf-status-line-error{background:#e03131;background:linear-gradient(90deg,#2f9e44 0%,#2f9e44 45%,#e03131 55%,#e03131 100%)}
+    
+    /* Teksty dolne */
+    h2{font-size:22px;font-weight:400;color:#2f3133;margin-top:25px;margin-bottom:15px}
+    p{margin:0 0 15px;color:#404040}
+    p strong{font-weight:700}
+    
+    /* Stopka */
+    .cf-error-footer{margin-top:60px;border-top:1px solid #e5e5e5;padding:20px 0 15px;font-size:12px;color:#7e7e7e;text-align:center}
+    .cf-footer-item{display:inline-block;margin:0 10px}
+    .cf-footer-separator{color:#c5c5c5}
+</style>
 </head>
 <body>
+<div id="cf-wrapper">
+    <div class="cf-error-details-wrapper">
+        <div class="cf-wrapper">
+            <div class="cf-error-code">Error 521 <span>• Ray ID: 9f7b43a2bc81234f •</span> 2026-05-29 19:53:24 UTC</div>
+            <h1 class="cf-error-title">Web server is down</h1>
+            
+            <div class="cf-status-display">
+                <div class="cf-status-section">
+                    
+                    <div class="cf-status-item">
+                        <svg class="cf-icon cf-icon-success" viewBox="0 0 24 24"><path d="M4 6h16v10H4zm0 12h16v2H4zm2-5h2v2H6zm4 0h8v2h-8z"/></svg>
+                        <span class="cf-status-label">You</span>
+                        <span class="status-badge ok">Browser</span>
+                        <span class="cf-status-sublabel">Working</span>
+                    </div>
+                    
+                    <div class="cf-status-line"></div>
+                    
+                    <div class="cf-status-item">
+                        <svg class="cf-icon cf-icon-success" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+                        <span class="cf-status-label">Warsaw</span>
+                        <span class="status-badge ok">Cloudflare</span>
+                        <span class="cf-status-sublabel">Working</span>
+                    </div>
+                    
+                    <div class="cf-status-line cf-status-line-error"></div>
+                    
+                    <div class="cf-status-item cf-error-item">
+                        <svg class="cf-icon cf-icon-error" viewBox="0 0 24 24"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H6V6h12v12zm-2-8h-2V8h2v2zm-4 0H8V8h2v2zm4 4h-2v-2h2v2zm-4 0H8v-2h2v2z"/></svg>
+                        <span class="cf-status-label">http://www.sp.bychawa.pl</span>
+                        <span class="status-badge error">Host</span>
+                        <span class="cf-status-sublabel">Error</span>
+                    </div>
+                    
+                </div>
+            </div>
 
-<div class="container">
-    <div class="header">
-        <div class="error-code">Error 521</div>
-        <h1>Web server is down</h1>
-    </div>
+            <div class="cf-columns">
+                <div class="cf-column">
+                    <h2>What happened?</h2>
+                    <p>The web server is not returning a response and the connection was refused. As a result, the web page cannot be displayed.</p>
+                </div>
+                <div class="cf-column">
+                    <h2>What can I do?</h2>
+                    <p><strong>If you are a visitor of this website:</strong><br>Please try again in a few minutes.</p>
+                    <p><strong>If you are the owner of this website:</strong><br>Check if your origin server is running and accepting connections on the configured port. Cloudflare is trying to connect, but the server is actively refusing it.</p>
+                </div>
+            </div>
 
-    <div class="diagram">
-        <div class="node">
-            <div class="node-icon">💻</div>
-            <div class="node-title">You</div>
-            <div class="status working">Browser Working</div>
+            <div class="cf-error-footer">
+                <span class="cf-footer-item">Cloudflare Ray ID: <strong>9f7b43a2bc81234f</strong></span>
+                <span class="cf-footer-separator">•</span>
+                <span class="cf-footer-item">Your IP: 185.137.12.44</span>
+                <span class="cf-footer-separator">•</span>
+                <span class="cf-footer-item">Performance &amp; security by Cloudflare</span>
+            </div>
+
         </div>
-        
-        <div class="line success"></div>
-        
-        <div class="node">
-            <div class="node-icon">☁️</div>
-            <div class="node-title">Warsaw</div>
-            <div class="status working">Cloudflare Working</div>
-        </div>
-        
-        <div class="line error"></div>
-        
-        <div class="node">
-            <div class="node-icon">❌</div>
-            <div class="node-title">moja-strona.pl</div>
-            <div class="status failed">Host Error</div>
-        </div>
-    </div>
-
-    <div class="details">
-        <h2>What happened?</h2>
-        <p>The web server is not returning a response and the connection was refused. As a result, the web page cannot be displayed.</p>
-        
-        <h2>What can I do?</h2>
-        <p><strong>If you are a visitor of this website:</strong> Please try again in a few minutes.</p>
-        <p><strong>If you are the owner of this website:</strong> Check if your origin server is running and accepting connections on the configured port. Cloudflare is trying to connect, but the server is actively refusing it.</p>
-    </div>
-
-    <div class="cf-footer">
-        Cloudflare Ray ID: <span style="font-family: monospace;">9c1234567890abcdef</span> &bull; Your IP: 127.0.0.1 &bull; Performance & security by Cloudflare
     </div>
 </div>
-
 </body>
 </html>
